@@ -22,6 +22,21 @@ def PrepOutputDir(dir):
 def get_newfname(prefix, timespec):
     return prefix + datetime.datetime.now().isoformat(sep=' ', timespec=timespec) + '.jpg'
 
+def missedFrame(dir):
+    folder = dir + str(datetime.date.today())
+    file = folder + '/MissedFrames.txt'
+    i = 0
+    if os.path.exists(file):
+        f = open(file, 'r')
+        i = int(f.read())
+        f.close()
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+    
+    f = open(file, "w")
+    f.write(str(i+1))
+    f.close()
+
 
 #PrepOutputDir('test/', True)
 #print(makedirandfile('./test/', 'wowSoWow', 'minutes', True))

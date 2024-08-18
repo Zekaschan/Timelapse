@@ -27,6 +27,7 @@ try:
             capture_stderr = True)
     )
 except ffmpeg.Error as e:
+    timelapseio.missedFrame(config.output_dir)
     print(e.stderr.decode(), file=sys.stderr)
     sys.exit(1)
 
